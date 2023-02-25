@@ -1,0 +1,36 @@
+C51 COMPILER V9.54   MAIN                                                                  01/10/2023 13:27:02 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\Ó²¼þ\Keil5 C51\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listin
+                    -gs\main.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          
+   3          sbit xuanLED(int number)
+*** ERROR C141 IN LINE 3 OF main.c: syntax error near '(', expected '='
+*** ERROR C202 IN LINE 3 OF main.c: 'number': undefined identifier
+   4          {
+   5            switch(number)
+   6            {
+*** ERROR C129 IN LINE 6 OF main.c: missing ';' before '{'
+   7              case1:sbit LED1 = P2^0;return LED1;break;
+   8              case2:sbit LED2 = P2^1;return LED2;break;
+   9              case3:sbit LED3 = P2^2;return LED3;break;
+  10              case4:sbit LED4 = P2^3;return LED4;break;
+  11              case5:sbit LED5 = P2^4;return LED5;break;
+  12              case6:sbit LED6 = P2^5;return LED6;break;
+  13              case7:sbit LED7 = P2^6;return LED7;break;
+  14              case8:sbit LED8 = P2^7;return LED8;break;
+  15            }
+  16          }
+  17          
+  18          void main()
+  19          {
+  20            LED = xuanLED(2);
+  21          }
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  3 ERROR(S)
