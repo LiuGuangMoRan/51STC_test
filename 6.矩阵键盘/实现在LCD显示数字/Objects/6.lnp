@@ -1,0 +1,5 @@
+".\Objects\main.obj",
+".\Objects\LCD1602.obj",
+".\Objects\Key.obj" 
+TO ".\Objects\6.1" 
+PRINT(".\Listings\6.m51") RAMSIZE(256) 

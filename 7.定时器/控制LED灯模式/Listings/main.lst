@@ -1,0 +1,84 @@
+C51 COMPILER V9.54   MAIN                                                                  01/16/2023 18:53:31 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\硬件\Keil5 C51\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listin
+                    -gs\main.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          
+   3          void Timer0_Init()
+   4          {
+   5   1        TMOD=0x01;  //不可寻址,控制定时器的模式为模式一,TMON为功能寄存器
+   6   1        
+   7   1        //下面为TCON控制计数器,跳变方式
+   8   1        
+   9   1        TF0=0;      //硬件置1或置0
+  10   1        TR0=1;      //软件置1或置0
+  11   1        
+  12   1        //控制计算器为1ms进行跳变,就要改变TH0,TL0的值
+  13   1        //64535位十进制数,256为16的2次方,所以64535变成十六进制数,再变成8位
+  14   1        //二进制数
+  15   1        
+  16   1        TH0=64535/256;//获取前8位的数值
+  17   1        TL0=64535%256;//获取后8位的数值
+  18   1        
+  19   1        //控制中断系统,执行中断程序
+  20   1        ET0=1;
+  21   1        EA=1;
+  22   1        PT0=0;
+  23   1        
+  24   1      }
+  25          
+  26            
+  27          void main()
+  28          {
+  29   1        Timer0_Init();
+  30   1        while(1)
+  31   1        {
+  32   2        
+  33   2        }
+  34   1      }
+  35          
+  36          unsigned int T0Count;
+  37          
+  38          //中断后要执行的程序
+  39          void Timer0_Routine() interrupt 1
+  40          {
+  41   1        
+  42   1        //上的函数代码只会执行一次，相当控制开关，开了就会一直执行定时器
+  43   1        
+  44   1        //执行一次后，TH0,TL0就会溢出变成0
+  45   1        TH0=64535/256;
+  46   1        TL0=64535%256;
+  47   1        
+  48   1        if(T0Count>=1000)//通过程序控制定时时间
+  49   1        {
+  50   2          T0Count = 0;
+  51   2          P2_0 = ~P2_0;
+  52   2        }
+  53   1        
+  54   1        T0Count++;
+C51 COMPILER V9.54   MAIN                                                                  01/16/2023 18:53:31 PAGE 2   
+
+  55   1        
+  56   1      }
+  57          
+  58          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     67    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,116 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        01/16/2023  18:53:48  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+D:\Ó²¼þ\KEIL5 C51\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\7.2 PRINT (.\Listings\7.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  D:\Ó²¼þ\KEIL5 C51\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\7.2 (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0002H     UNIT         ?DT?MAIN
+            IDATA   000AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0008H                  *** GAP ***
+            CODE    000BH     0003H     ABSOLUTE     
+                    000EH     07F2H                  *** GAP ***
+            CODE    0800H     002AH     UNIT         ?PR?TIMER0_ROUTINE?MAIN
+            CODE    082AH     0014H     UNIT         ?PR?TIMER0_INIT?MAIN
+            CODE    083EH     000CH     UNIT         ?C_C51STARTUP
+            CODE    084AH     0005H     UNIT         ?PR?MAIN?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\7.2 (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN
+  +--> ?PR?TIMER0_INIT?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\7.2 (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0800H         PUBLIC        Timer0_Routine
+  B:00A8H.7       PUBLIC        EA
+BL51 BANKED LINKER/LOCATER V6.22                                                      01/16/2023  18:53:48  PAGE 2
+
+
+  D:0008H         PUBLIC        T0Count
+  B:00A0H.0       PUBLIC        P2_0
+  C:084AH         PUBLIC        main
+  C:082AH         PUBLIC        Timer0_Init
+  D:0089H         PUBLIC        TMOD
+  B:00A8H.1       PUBLIC        ET0
+  B:0088H.5       PUBLIC        TF0
+  D:008CH         PUBLIC        TH0
+  D:008AH         PUBLIC        TL0
+  B:00B8H.1       PUBLIC        PT0
+  B:0088H.4       PUBLIC        TR0
+  -------         PROC          TIMER0_INIT
+  C:082AH         LINE#         3
+  C:082AH         LINE#         4
+  C:082AH         LINE#         5
+  C:082DH         LINE#         9
+  C:082FH         LINE#         10
+  C:0831H         LINE#         16
+  C:0834H         LINE#         17
+  C:0837H         LINE#         20
+  C:0839H         LINE#         21
+  C:083BH         LINE#         22
+  C:083DH         LINE#         24
+  -------         ENDPROC       TIMER0_INIT
+  -------         PROC          MAIN
+  C:084AH         LINE#         27
+  C:084AH         LINE#         28
+  C:084AH         LINE#         29
+  C:084DH         LINE#         30
+  C:084DH         LINE#         31
+  C:084DH         LINE#         33
+  -------         ENDPROC       MAIN
+  -------         PROC          TIMER0_ROUTINE
+  C:0800H         LINE#         39
+  C:0804H         LINE#         45
+  C:0807H         LINE#         46
+  C:080AH         LINE#         48
+  C:0815H         LINE#         49
+  C:0815H         LINE#         50
+  C:081BH         LINE#         51
+  C:081DH         LINE#         52
+  C:081DH         LINE#         54
+  C:0825H         LINE#         56
+  -------         ENDPROC       TIMER0_ROUTINE
+  -------         ENDMOD        MAIN
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0046H BYTE ( 3%) *
+******************************************************************************
+
+Program Size: data=11.0 xdata=0 code=85
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
