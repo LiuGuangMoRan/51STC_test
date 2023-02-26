@@ -1,0 +1,63 @@
+C51 COMPILER V9.54   MAIN                                                                  02/23/2023 11:41:18 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\Keil5\Keil5 C51\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listi
+                    -ngs\main.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          
+   3          void UART_Init()
+   4          { 
+   5   1        SCON = 0x50; 
+   6   1        PCON |= 0x80;
+   7   1        TMOD &= 0x0F;
+   8   1        TMOD |= 0x20;
+   9   1        TL1 = 0xF4;   
+  10   1        TH1 = 0xF4;   
+  11   1        ET1 = 0;      
+  12   1        TR1 = 1;      
+  13   1        
+  14   1        //打开中断，执行中断代码
+  15   1        EA=1;
+  16   1        ES=1;
+  17   1        
+  18   1      }
+  19          
+  20          void main()
+  21          {
+  22   1        UART_Init();
+  23   1        while(1)
+  24   1        {
+  25   2        
+  26   2        }
+  27   1      }
+  28          
+  29          //运用传过来的数据进行操作控制
+  30          void UART_Routine() interrupt 4
+  31          {
+  32   1        if(RI=1)
+*** WARNING C276 IN LINE 32 OF main.c: constant in condition expression
+  33   1        {
+  34   2          P2=SBUF;
+  35   2          RI=0;
+  36   2        }
+  37   1      }
+  38          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     45    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,116 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        02/23/2023  11:41:18  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+D:\KEIL5\KEIL5 C51\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\8.2 PRINT (.\Listings\8.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  D:\KEIL5\KEIL5 C51\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\8.2 (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0020H                  *** GAP ***
+            CODE    0023H     0003H     ABSOLUTE     
+                    0026H     07DAH                  *** GAP ***
+            CODE    0800H     001BH     UNIT         ?PR?UART_INIT?MAIN
+            CODE    081BH     000DH     UNIT         ?PR?UART_ROUTINE?MAIN
+            CODE    0828H     000CH     UNIT         ?C_C51STARTUP
+            CODE    0834H     0005H     UNIT         ?PR?MAIN?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\8.2 (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN
+  +--> ?PR?UART_INIT?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\8.2 (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  B:00A8H.7       PUBLIC        EA
+  C:081BH         PUBLIC        UART_Routine
+BL51 BANKED LINKER/LOCATER V6.22                                                      02/23/2023  11:41:18  PAGE 2
+
+
+  B:00A8H.4       PUBLIC        ES
+  B:0098H.0       PUBLIC        RI
+  C:0834H         PUBLIC        main
+  D:0099H         PUBLIC        SBUF
+  D:0087H         PUBLIC        PCON
+  C:0800H         PUBLIC        UART_Init
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  B:00A8H.3       PUBLIC        ET1
+  D:008DH         PUBLIC        TH1
+  D:008BH         PUBLIC        TL1
+  B:0088H.6       PUBLIC        TR1
+  -------         PROC          UART_INIT
+  C:0800H         LINE#         3
+  C:0800H         LINE#         4
+  C:0800H         LINE#         5
+  C:0803H         LINE#         6
+  C:0806H         LINE#         7
+  C:0809H         LINE#         8
+  C:080CH         LINE#         9
+  C:080FH         LINE#         10
+  C:0812H         LINE#         11
+  C:0814H         LINE#         12
+  C:0816H         LINE#         15
+  C:0818H         LINE#         16
+  C:081AH         LINE#         18
+  -------         ENDPROC       UART_INIT
+  -------         PROC          MAIN
+  C:0834H         LINE#         20
+  C:0834H         LINE#         21
+  C:0834H         LINE#         22
+  C:0837H         LINE#         23
+  C:0837H         LINE#         24
+  C:0837H         LINE#         26
+  -------         ENDPROC       MAIN
+  -------         PROC          UART_ROUTINE
+  C:081BH         LINE#         30
+  C:081DH         LINE#         32
+  C:0820H         LINE#         33
+  C:0820H         LINE#         34
+  C:0823H         LINE#         35
+  C:0825H         LINE#         36
+  C:0825H         LINE#         37
+  -------         ENDPROC       UART_ROUTINE
+  -------         ENDMOD        MAIN
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0030H BYTE ( 2%) *
+******************************************************************************
+
+Program Size: data=9.0 xdata=0 code=63
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

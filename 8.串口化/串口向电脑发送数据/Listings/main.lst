@@ -1,0 +1,80 @@
+C51 COMPILER V9.54   MAIN                                                                  01/19/2023 20:19:49 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\硬件\Keil5 C51\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listin
+                    -gs\main.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          
+   3          
+   4          void Delay(unsigned int xms)    //@12.000MHz
+   5          {
+   6   1        unsigned char i, j;
+   7   1        while(xms)
+   8   1        {
+   9   2          i = 2;
+  10   2          j = 239;
+  11   2          do
+  12   2          {
+  13   3            while (--j);
+  14   3          }while (--i);
+  15   2          xms--;
+  16   2        } 
+  17   1      }
+  18          
+  19          void UART_Init()
+  20          { 
+  21   1        //配置串口的工作方式，为方式1，相关端口SM0/FE,S1,而T1,R1配置中断
+  22   1        SCON = 0x40;  //0100 0000
+  23   1        
+  24   1        //配置传输的波特率，由定时器和PCON控制
+  25   1        //PCON控制相关端口SMOD(波特率选择位，波特率加倍),SMOD0(错误检测)
+  26   1        PCON |= 0x80;
+  27   1        //定时器配置波特率  
+  28   1        //配置定时器模式0
+  29   1        TMOD &= 0x0F;
+  30   1        TMOD |= 0x20;
+  31   1        TL1 = 0xF4;   //设定定时器初值
+  32   1        TH1 = 0xF4;   //设定定时器重装值
+  33   1        ET1 = 0;      //禁止定时器1中断
+  34   1        TR1 = 1;      //启动定时器1
+  35   1        
+  36   1      }
+  37          
+  38          void UART_SendByte(unsigned char Byte)
+  39          {
+  40   1        SBUF = Byte;
+  41   1        while(T1==0); //当内容发送结束时，硬件自动置1，就已经向主机请求中断，但中断电路没有配置
+  42   1        T1=0;         //软件恢复置0；
+  43   1        
+  44   1      }
+  45          
+  46          void main()
+  47          {
+  48   1        UART_Init();
+  49   1        UART_SendByte(0x66);
+  50   1        while(1)
+  51   1        {
+  52   2        
+  53   2        }
+  54   1      }
+C51 COMPILER V9.54   MAIN                                                                  01/19/2023 20:19:49 PAGE 2   
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     61    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
