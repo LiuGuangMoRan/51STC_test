@@ -1,0 +1,6 @@
+".\Objects\Timer0.obj",
+".\Objects\main.obj",
+".\Objects\Keyboard.obj",
+".\Objects\Tool.obj" 
+TO ".\Objects\3" 
+PRINT(".\Listings\3.m51") RAMSIZE(256) 

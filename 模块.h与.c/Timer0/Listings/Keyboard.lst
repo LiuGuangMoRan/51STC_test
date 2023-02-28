@@ -1,0 +1,99 @@
+C51 COMPILER V9.54   KEYBOARD                                                              02/28/2023 11:14:22 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE KEYBOARD
+OBJECT MODULE PLACED IN .\Objects\Keyboard.obj
+COMPILER INVOKED BY: D:\Keil5\Keil5 C51\C51\BIN\C51.EXE Keyboard.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\L
+                    -istings\Keyboard.lst) TABS(2) OBJECT(.\Objects\Keyboard.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include "tool.h"
+   3          
+   4          /** 4x4点阵键盘模块化
+   5            * @brief  矩阵键盘读取按键键码
+   6            * @param  无
+   7            * @retval KeyNumber 按下按键的键码值
+   8                如果按键按下不放，程序会停留在此函数，松手的一瞬间，返回按键键码，没�
+             -��按键按下时，返回0
+   9            @explain P1_0 ~ P1_3端是输入低电平，P1_7 ~ P1_4端是接收低电平，通过按下按键作为�
+             -�件
+  10                 P1 = 0xFF 使P1_0 ~ P1_7全为高电平，Delay函数消除按键前后影响
+  11            */
+  12          
+  13          
+  14          unsigned char BigKey()
+  15          {
+  16   1        unsigned char KeyNumber=0;
+  17   1        
+  18   1        P1=0xFF;
+  19   1        P1_3=0;
+  20   1        if(P1_7==0){Delay(20);while(P1_7==0);Delay(20);KeyNumber=1;}
+  21   1        if(P1_6==0){Delay(20);while(P1_6==0);Delay(20);KeyNumber=5;}
+  22   1        if(P1_5==0){Delay(20);while(P1_5==0);Delay(20);KeyNumber=9;}
+  23   1        if(P1_4==0){Delay(20);while(P1_4==0);Delay(20);KeyNumber=13;}
+  24   1        
+  25   1        P1=0xFF;
+  26   1        P1_2=0;
+  27   1        if(P1_7==0){Delay(20);while(P1_7==0);Delay(20);KeyNumber=2;}
+  28   1        if(P1_6==0){Delay(20);while(P1_6==0);Delay(20);KeyNumber=6;}
+  29   1        if(P1_5==0){Delay(20);while(P1_5==0);Delay(20);KeyNumber=10;}
+  30   1        if(P1_4==0){Delay(20);while(P1_4==0);Delay(20);KeyNumber=14;}
+  31   1        
+  32   1        P1=0xFF;
+  33   1        P1_1=0;
+  34   1        if(P1_7==0){Delay(20);while(P1_7==0);Delay(20);KeyNumber=3;}
+  35   1        if(P1_6==0){Delay(20);while(P1_6==0);Delay(20);KeyNumber=7;}
+  36   1        if(P1_5==0){Delay(20);while(P1_5==0);Delay(20);KeyNumber=11;}
+  37   1        if(P1_4==0){Delay(20);while(P1_4==0);Delay(20);KeyNumber=15;}
+  38   1        
+  39   1        P1=0xFF;
+  40   1        P1_0=0;
+  41   1        if(P1_7==0){Delay(20);while(P1_7==0);Delay(20);KeyNumber=4;}
+  42   1        if(P1_6==0){Delay(20);while(P1_6==0);Delay(20);KeyNumber=8;}
+  43   1        if(P1_5==0){Delay(20);while(P1_5==0);Delay(20);KeyNumber=12;}
+  44   1        if(P1_4==0){Delay(20);while(P1_4==0);Delay(20);KeyNumber=16;}
+  45   1        
+  46   1        return KeyNumber;
+  47   1      }
+  48          
+  49          
+  50          
+  51          /** 4键键盘模块化
+  52            * @brief  矩阵键盘读取按键键码
+C51 COMPILER V9.54   KEYBOARD                                                              02/28/2023 11:14:22 PAGE 2   
+
+  53            * @param  无
+  54            * @retval KeyNumber 按下按键的键码值
+  55                如果按键按下不放，程序会停留在此函数，松手的一瞬间，返回按键键码，没�
+             -��按键按下时，返回0
+  56            @explain 输入低电平为接地端，P3_0 ~ P3_3端是接收低电平，通过按下按键作为条件�
+             -��Delay函数消除按键前后影响
+  57            */
+  58          
+  59          unsigned char SmallKey()
+  60          {
+  61   1        unsigned char KeyNumber = 0;
+  62   1        if(P3_1 == 0){Delay(20);while(P3_1==0);Delay(20);KeyNumber = 1;}
+  63   1        if(P3_0 == 0){Delay(20);while(P3_0==0);Delay(20);KeyNumber = 2;}
+  64   1        if(P3_2 == 0){Delay(20);while(P3_2==0);Delay(20);KeyNumber = 3;}
+  65   1        if(P3_3 == 0){Delay(20);while(P3_3==0);Delay(20);KeyNumber = 4;}
+  66   1        
+  67   1        
+  68   1        return KeyNumber;
+  69   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    490    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
