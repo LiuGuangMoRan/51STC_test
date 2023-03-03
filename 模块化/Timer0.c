@@ -38,3 +38,56 @@ void Timer0_Init()
   * @param  无
   * @retval Timer0_Routine() interrupt 1  当定时器计数完毕，跳过当前程序，执行中断程序
   */
+
+/*
+void Timer0_Routine() interrupt 1
+{
+	
+}*/
+
+
+/**
+  * @brief  初始化定时器(功能是不触发中断,不工作)，只需完成计数工作，完成需要其他函数
+  * @param  无
+  * @retval 无
+  */
+void Timer0_Init_NoWork()
+{
+	TMOD&=0xF0;		
+	TMOD|=0x01;
+	TH0=0;
+	TL0=0;
+	TF0=0;			
+	TR0=0;			
+}
+
+/**
+  * @brief  设置定时器的初值
+  * @param  value设置定时器初值，通过/%得到前8位和后8位
+  * @retval 无
+  */
+void Timer0_SetCounter(unsigned int Value)
+{
+	TH0 = Value/256;
+	TL0 = Value%256;
+}
+
+/**
+  * @brief  得到定时器的计数点
+  * @param  无
+  * @retval 返回的是以us作为单位的计数点
+  */
+unsigned int Timer0_GetCounter(void)
+{
+	return (TH0<<8)|TL0;
+}
+
+/**
+  * @brief  控制定时器工作状态
+  * @param  Flay控制定时器的开关
+  * @retval 无
+  */
+void Timer0_Run(unsigned char Flag)
+{
+	TR0 = Flag;
+}
