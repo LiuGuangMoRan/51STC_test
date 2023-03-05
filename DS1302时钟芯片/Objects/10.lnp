@@ -1,0 +1,5 @@
+".\Objects\main.obj",
+".\Objects\DS1302.obj",
+".\Objects\Tool.obj" 
+TO ".\Objects\10" 
+PRINT(".\Listings\10.m51") RAMSIZE(256) 
